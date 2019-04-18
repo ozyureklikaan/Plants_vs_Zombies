@@ -15,4 +15,10 @@ public class Sunflower extends Plant {
 		});
 		sunProduceTimer.start();
 	}
+	
+	//////
+	public void LoopStopper() {
+		sunProduceTimer.stop();
+	}
+	//////
 }

@@ -15,7 +15,9 @@ public class Plant {
 	}
 	
 	public void Stop() {
-		
+		if (this.getClass().getTypeName().equals("Plants_vs_Zombies.Sunflower")) {
+			((Sunflower)this).LoopStopper();
+		}
 	}
 	
 	public int getHealth() {

@@ -20,7 +20,6 @@ public class Zombie {
 	public Zombie(GamePanel parent, int lane) {
 		this.gamePanel = parent;
 		myLane = lane;
-		System.out.println(myLane);
 	}
 	
 	public void setFeature() {
