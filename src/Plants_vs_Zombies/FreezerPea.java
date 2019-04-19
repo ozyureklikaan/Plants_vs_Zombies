@@ -30,7 +30,7 @@ public class FreezerPea extends Pea {
 					break;
 				}
 			}
-			setPosX(getPosX() + 15);
 		}
+		setPosX(getPosX() + 15);
 	}
 }

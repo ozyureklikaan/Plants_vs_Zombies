@@ -19,9 +19,6 @@ public class Collision extends JPanel implements MouseListener {
 	
 	public void setPlant(Plant plant) {
 		this.plant = plant;
-//		if (plant.getClass().getTypeName().equals("Plants_vs_Zombies.Sunflower")) {
-//			System.out.println("Sunflower");
-//		}
 	}
 	
 	public void PlantRemove() {

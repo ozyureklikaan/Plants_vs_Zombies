@@ -25,7 +25,9 @@ public class GameWindow extends JFrame {
 		FreezerPeaShooter
 	}
 	
-	public GameWindow() {
+	////
+	public GameWindow(String stageNumber) {
+	////
 		setSize(1006, 631);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setLayout(null);
@@ -86,6 +88,10 @@ public class GameWindow extends JFrame {
 		
 		setResizable(false);
 		setVisible(true);
+		
+		////
+		setStage(stageNumber);
+		////
 	}
 	
 	public void ClearLayeredPane() {
@@ -105,11 +111,19 @@ public class GameWindow extends JFrame {
 		firstPage.repaint();
 		setResizable(false);
 		setVisible(true);
+		
+		////
+		setStage("1");
+		////
+	}
+	
+	private void setStage(String stageNumber) {
+		StageData.Write(stageNumber);
 	}
 	
 	public static void Begin() {
 		gameWindow.dispose();
-		gameWindow = new GameWindow();
+		gameWindow = new GameWindow("1");
 	}
 	
 	public static void main(String[] args) {

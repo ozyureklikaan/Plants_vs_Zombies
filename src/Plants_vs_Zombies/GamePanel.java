@@ -9,7 +9,7 @@ import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 import java.util.Random;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({ "unused", "serial" })
 public class GamePanel extends JLayeredPane implements MouseMotionListener {
 	private Image backgroundImage;
 	private Image peaShooterImage;
@@ -18,9 +18,10 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 	private Image peaImage;
 	private Image freezerPeaImage;
 	private Image normalZombieImage;
-//	private Image normalZombieDyingImage;
+	
+	private Image normalZombieDyingImage;
 	private Image coneHeadedZombieImage;
-//	private Image coneHeadedZombieDyingImage;
+	private Image coneHeadedZombieDyingImage;
 	private Image gameOverImage;
 	private Collision[] collisions;
 	
@@ -41,7 +42,6 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 	
 	private GameWindow.PlantType activeCardPlanting = GameWindow.PlantType.None;
 	
-	@SuppressWarnings("unused")
 	private int mouseX, mouseY;
 	
 	private int sunCoin;
@@ -55,7 +55,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 		setLayout(null);
 		addMouseMotionListener(this);
 		this.sunCoinBoard = sunCoinBoard;
-		setSunCoin(150);
+		setSunCoin(1500);
 		this.scoreBoard = scoreBoard;
 		setScore(0);
 		this.scoreBoard2 = scoreBoard2;
@@ -74,8 +74,8 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 		
 		normalZombieImage = new ImageIcon(this.getClass().getResource("images/zombie_normal.gif")).getImage();
 		coneHeadedZombieImage = new ImageIcon(this.getClass().getResource("images/zombie_football.gif")).getImage();
-//		normalZombieDyingImage = new ImageIcon(this.getClass().getResource("images/zombie_normal_dying.gif")).getImage();
-//		coneHeadedZombieDyingImage = new ImageIcon(this.getClass().getResource("images/zombie_football_dying.gif")).getImage();
+		normalZombieDyingImage = new ImageIcon(this.getClass().getResource("images/zombie_normal_dying.gif")).getImage();
+		coneHeadedZombieDyingImage = new ImageIcon(this.getClass().getResource("images/zombie_football_dying.gif")).getImage();
 		
 		laneZombies = new ArrayList<>();
 		laneZombies.add(new ArrayList<>());
@@ -179,13 +179,13 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 			if(coll.plant != null) {
 				Plant p = coll.plant;
 				if(p instanceof PeaShooter) {
-					graph.drawImage(peaShooterImage, 316 + (i % 7) * 85, 40 + (i / 7) * 110, null);
+					graph.drawImage(peaShooterImage, 293 + (i % 7) * 88, 40 + (i / 7) * 110, null);
 				}
 				if(p instanceof FreezerPeaShooter) {
-					graph.drawImage(freezerPeaShooterImage, 316 + (i % 7) * 85, 40 + (i / 7) * 110, null);
+					graph.drawImage(freezerPeaShooterImage, 295 + (i % 7) * 89, 40 + (i / 7) * 110, null);
 				}
 				if(p instanceof Sunflower) {
-					graph.drawImage(sunFlowerImage, 316 + (i % 7) * 85, 40 + (i / 7) * 110, null);
+					graph.drawImage(sunFlowerImage, 293 + (i % 7) * 88, 40 + (i / 7) * 110, null);
 				}
 			}
 		}
@@ -210,7 +210,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 				if(pea instanceof FreezerPea) {
 					graph.drawImage(freezerPeaImage, pea.getPosX(), 70 + (i * 110), null);
 				} else {
-					graph.drawImage(peaImage,pea.getPosX(), 55 + (i * 110), null);
+					graph.drawImage(peaImage, pea.getPosX(), 55 + (i * 110), null);
 				}
 			}
 		}
@@ -248,7 +248,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 	}
 	
 	private class PlantActionListener implements ActionListener {
-		int x,y;
+		int x, y;
 		
 		public PlantActionListener(int x, int y) {
 			this.x = x;
@@ -301,7 +301,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 				JOptionPane.showMessageDialog(null, "Stage Completed !!" + '\n' + "Starting Next Stage");
 				GameWindow.gameWindow.dispose();
 				StageData.Write("2");
-				GameWindow.gameWindow = new GameWindow();
+				GameWindow.gameWindow = new GameWindow("2");
 				progress = 0;
 			} else if(progress >= 200) {
 				JOptionPane.showMessageDialog(null, "Stage Completed !!" + '\n' + "More Stages Will Come Soon !!" + '\n' + "Resetting Data");

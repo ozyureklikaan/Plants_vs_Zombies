@@ -10,7 +10,7 @@ public class PeaShooter extends Plant {
 		super(parent, x, y);
 		shootTimer = new Timer(2000, (ActionEvent e) -> {
 			if (getGamePanel().getLaneZombies().get(y).size() > 0) {
-				getGamePanel().getLanePea().get(y).add(new Pea(getGamePanel(), y, 103 + this.getX() * 100));
+				getGamePanel().getLanePea().get(y).add(new Pea(getGamePanel(), y, 65 + this.getX() * 88));
 			}
 		});
 		shootTimer.start();

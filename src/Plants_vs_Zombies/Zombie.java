@@ -26,7 +26,7 @@ public class Zombie {
 		if(isWalking) {
 			boolean isCollision = false;
 			Collision collisioned = null;
-			for(int i= myLane * 7; i<(myLane + 1) * 7; i++ ) {
+			for(int i = myLane * 7; i < (myLane + 1) * 7; i++ ) {
 				if(gamePanel.getCollisions()[i].plant != null && gamePanel.getCollisions()[i].theCollider(posX)) {
 					isCollision = true;
 					collisioned = gamePanel.getCollisions()[i];
@@ -51,8 +51,9 @@ public class Zombie {
 				GamePanel.isGameOver = true;
 				isWalking = false;
 				JOptionPane.showMessageDialog(gamePanel, "ZOMBIES ATE YOUR BRAIN" + '\n' + "Starting the level again");
+				String stageNumber = StageData.STAGE_NUMBER.equals("1") ? "1" : "2";
 				GameWindow.gameWindow.dispose();
-				GameWindow.gameWindow = new GameWindow();
+				GameWindow.gameWindow = new GameWindow(stageNumber);
 			}
 		}	
 	}

@@ -14,7 +14,7 @@ public class Pea {
 	}
 	
 	public void setFeature() {
-		Rectangle plantRec = new Rectangle(posX, 40 + myLane * 110, 70, 80);
+		Rectangle plantRec = new Rectangle(posX, 40 + myLane * 110, 12, 80);
 		for (int i = 0; i < gamePanel.getLaneZombies().get(myLane).size(); i++) {
 			Zombie zombie = gamePanel.getLaneZombies().get(myLane).get(i);
 			Rectangle zombieRec = new Rectangle(zombie.getPosX(), 40 + myLane * 110, 70, 80);
