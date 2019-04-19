@@ -5,8 +5,6 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.awt.Color;
 import java.awt.Font;
-//import java.awt.Graphics;
-//import javax.swing.JApplet;
 
 @SuppressWarnings("serial")
 public class GameWindow extends JFrame {
@@ -25,9 +23,7 @@ public class GameWindow extends JFrame {
 		FreezerPeaShooter
 	}
 	
-	////
 	public GameWindow(String stageNumber) {
-	////
 		setSize(1006, 631);
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		setLayout(null);
@@ -89,9 +85,7 @@ public class GameWindow extends JFrame {
 		setResizable(false);
 		setVisible(true);
 		
-		////
 		setStage(stageNumber);
-		////
 	}
 	
 	public void ClearLayeredPane() {
@@ -112,9 +106,7 @@ public class GameWindow extends JFrame {
 		setResizable(false);
 		setVisible(true);
 		
-		////
 		setStage("1");
-		////
 	}
 	
 	private void setStage(String stageNumber) {

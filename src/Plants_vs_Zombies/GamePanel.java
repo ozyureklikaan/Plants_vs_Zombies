@@ -26,6 +26,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 	private Collision[] collisions;
 	
 	private ArrayList<ArrayList<Zombie>> laneZombies;
+	private ArrayList<ArrayList<Zombie>> laneDeathZombies;
 	private ArrayList<ArrayList<Pea>> lanePeas;
 	private ArrayList<Sun> activeSunflower;
 	
@@ -55,7 +56,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 		setLayout(null);
 		addMouseMotionListener(this);
 		this.sunCoinBoard = sunCoinBoard;
-		setSunCoin(1500);
+		setSunCoin(150);
 		this.scoreBoard = scoreBoard;
 		setScore(0);
 		this.scoreBoard2 = scoreBoard2;
@@ -90,6 +91,15 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 		lanePeas.add(new ArrayList<>());
 		lanePeas.add(new ArrayList<>());
 		lanePeas.add(new ArrayList<>());
+		
+		///
+		laneDeathZombies = new ArrayList<>();
+		laneDeathZombies.add(new ArrayList<>());
+		laneDeathZombies.add(new ArrayList<>());
+		laneDeathZombies.add(new ArrayList<>());
+		laneDeathZombies.add(new ArrayList<>());
+		laneDeathZombies.add(new ArrayList<>());
+		///
 		
 		collisions = new Collision[35];
 		for (int i = 0; i < collisions.length; i++) {
@@ -174,6 +184,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 	protected void paintComponent(Graphics graph) {
 		super.paintComponent(graph);
 		graph.drawImage(backgroundImage, 0, 0, null);
+		
 		for (int i = 0; i < 35; i++) {
 			Collision coll = collisions[i];
 			if(coll.plant != null) {
@@ -189,6 +200,7 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 				}
 			}
 		}
+		
 		for(int i = 0; i < 5; i++) {
 			try {
 				for(Zombie zombie : laneZombies.get(i)) {
@@ -205,6 +217,21 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
+			
+			try {
+				for (Zombie deathZombie : laneDeathZombies.get(i)) {
+					if(deathZombie instanceof NormalZombie) {
+						graph.drawImage(normalZombieDyingImage,deathZombie.getPosX(), (i * 110), null);
+					} else if(deathZombie instanceof ConeHeadedZombie) {
+						graph.drawImage(coneHeadedZombieDyingImage, deathZombie.getPosX(), (i * 110), null);
+					}
+					wait(1000);
+					laneDeathZombies.get(i).remove(deathZombie);
+				}				
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+
 			for(int j = 0; j < lanePeas.get(i).size(); j++) {
 				Pea pea = lanePeas.get(i).get(j);
 				if(pea instanceof FreezerPea) {
@@ -318,6 +345,10 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 	
 	public void setActiveCardPlanting(GameWindow.PlantType activeCardPlanting) {
 		this.activeCardPlanting = activeCardPlanting;
+	}
+	
+	public ArrayList<ArrayList<Zombie>> getlaneDeathZombies() {
+		return laneDeathZombies;
 	}
 	
 	public ArrayList<ArrayList<Zombie>> getLaneZombies() {

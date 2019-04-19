@@ -20,18 +20,17 @@ public class Pea {
 			Rectangle zombieRec = new Rectangle(zombie.getPosX(), 40 + myLane * 110, 70, 80);
 			if(plantRec.intersects(zombieRec)) {
 				zombie.setHealth(zombie.getHealth() - 300);
-				boolean isDied = false;
 				if(zombie.getHealth() <= 0) {
 					System.out.println("ZOMBIE DIED");
 					GamePanel.setProggres(10);
 					gamePanel.setScore(10);
+					////
+					gamePanel.getlaneDeathZombies().get(myLane).add(zombie);
 					gamePanel.getLaneZombies().get(myLane).remove(i);
-					isDied = true;
+					zombie.setDeath();
+					////
 				}
 				gamePanel.getLanePea().get(myLane).remove(this);
-				if(isDied) {
-					break;
-				}
 			}
 		}
 		posX += 15;

@@ -1,11 +1,6 @@
 package Plants_vs_Zombies;
 
 import javax.swing.*;
-//import java.awt.*;
-//import java.awt.event.ActionEvent;
-//import java.awt.event.ActionListener;
-//import java.awt.event.MouseEvent;
-//import java.awt.event.MouseMotionListener;
 
 public class Zombie {
 	private int health = 1000;
@@ -16,10 +11,12 @@ public class Zombie {
 	private int posX = 1000;
 	private int myLane;
 	private boolean isWalking = true;
+	private boolean isDeath;
 	
 	public Zombie(GamePanel parent, int lane) {
 		this.gamePanel = parent;
 		myLane = lane;
+		isDeath = false;
 	}
 	
 	public void setFeature() {
@@ -117,6 +114,14 @@ public class Zombie {
 	
 	public boolean isWalking() {
 		return isWalking;
+	}
+	
+	public void setDeath() {
+		isDeath = !isDeath;
+	}
+	
+	public boolean isDeath() {
+		return isDeath;
 	}
 	
 	public void setWalking(boolean walking) {
