@@ -92,14 +92,12 @@ public class GamePanel extends JLayeredPane implements MouseMotionListener {
 		lanePeas.add(new ArrayList<>());
 		lanePeas.add(new ArrayList<>());
 		
-		///
 		laneDeathZombies = new ArrayList<>();
 		laneDeathZombies.add(new ArrayList<>());
 		laneDeathZombies.add(new ArrayList<>());
 		laneDeathZombies.add(new ArrayList<>());
 		laneDeathZombies.add(new ArrayList<>());
 		laneDeathZombies.add(new ArrayList<>());
-		///
 		
 		collisions = new Collision[35];
 		for (int i = 0; i < collisions.length; i++) {
